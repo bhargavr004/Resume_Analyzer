@@ -20,8 +20,6 @@ nltk.download('punkt_tab')
 nltk.download('stopwords')
 
 
-
-
 # Load the dataset
 # Load the dataset
 file_path = 'AI_resume_matchmaker_dataset.csv'
@@ -100,73 +98,6 @@ best_pipeline = Pipeline([
 ])
 best_pipeline.fit(X_train, y_train)
 
-# file_path = 'AI_resume_matchmaker_dataset.csv'
-# data = pd.read_csv(file_path)
-
-# # Handling missing values by dropping rows with any NaN values
-# data_cleaned = data.dropna()
-
-# # Combining Resumes and JD into a single feature set in a new DataFrame
-# combined_text = data_cleaned['Resumes'] + " " + data_cleaned['JD']
-# data_combined = pd.DataFrame({'text': combined_text, 'Result': data_cleaned['Result']})
-
-# # Splitting the data into features and target
-# X = data_combined['text']
-# y = data_combined['Result']
-
-# # Split the data into training and testing sets
-# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# # List of models to train
-# models = {
-#     'Naive Bayes': MultinomialNB(),
-#     'Logistic Regression': LogisticRegression(max_iter=1000),
-#     'Random Forest': RandomForestClassifier(),
-#     'SVM': SVC(probability=True),
-#     'Decision Tree': DecisionTreeClassifier()
-# }
-
-# # Vectorization
-# vectorizer = TfidfVectorizer()
-
-# # Dictionary to store the performance results
-# results = {}
-
-# # Training and evaluating each model
-# for model_name, model in models.items():
-#     pipeline = Pipeline([
-#         ('tfidf', vectorizer),
-#         ('clf', model)
-#     ])
-
-#     pipeline.fit(X_train, y_train)
-#     y_pred = pipeline.predict(X_test)
-#     accuracy = accuracy_score(y_test, y_pred)
-#     report = classification_report(y_test, y_pred, output_dict=True)
-#     precision = report['weighted avg']['precision']
-#     recall = report['weighted avg']['recall']
-#     f1 = report['weighted avg']['f1-score']
-
-#     results[model_name] = {
-#         'Accuracy': accuracy,
-#         'Precision': precision,
-#         'Recall': recall,
-#         'F1 Score': f1
-#     }
-
-# # Creating a DataFrame for the results
-# results_df = pd.DataFrame(results).T
-
-# # Identifying the best model
-# best_model_name = results_df['Accuracy'].idxmax()
-# best_accuracy = results_df.loc[best_model_name, 'Accuracy']
-
-# # Train the best model on the full training set
-# best_pipeline = Pipeline([
-#     ('tfidf', vectorizer),
-#     ('clf', models[best_model_name])
-# ])
-# best_pipeline.fit(X_train, y_train)
 
 def read_file(file_stream, file_type):
     if file_type.lower().endswith('.pdf'):
